@@ -66,7 +66,7 @@ menu.state('buyAirtime.amount', {
  
 // Registering USSD handler with Express
  
-app.post('/ussd', function(req, res){
+app.post('*', function(req, res){
     menu.run(req.body, ussdResult => {
         res.send(ussdResult);
     });
