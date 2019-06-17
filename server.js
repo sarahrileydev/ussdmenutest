@@ -49,7 +49,8 @@ menu.state('buyAirtime', {
     },
     next: {
         // using regex to match user input to next state
-        '*\\d+': 'buyAirtime.amount'
+        '*\\d+': 'buyAirtime.amount',
+        '99': 'home'
     }
 });
  
