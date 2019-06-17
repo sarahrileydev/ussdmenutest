@@ -91,6 +91,13 @@ app.post("*", function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
+  addPost(post)
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(({ message }) => {
+      res.status(503).json({ message });
+    });
 });
 
 const port = process.env.PORT || 5000;
