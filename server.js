@@ -91,6 +91,7 @@ app.post("*", function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
+  let post = req.body;
   addPost(post)
     .then(saved => {
       res.status(201).json(saved);
