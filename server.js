@@ -64,11 +64,11 @@ menu.state("postForSale", {
   run: () => {
     async function addPost(post) {
       console.log("before");
-      const func = await db("markets")
+      const func = await db("products")
         .insert(post)
         .where({ market: market });
       console.log("after");
-      return `New Post ID: ${post.name} : Added :)`;
+      return `New Post ID: ${post.market} : Added :)`;
     }
     menu.end("Your post is live" + post);
   }
