@@ -53,26 +53,22 @@ menu.state("markets", {
 
 menu.state("Bujumbaru", {
   run: () => {
-    let sql = `
-    SELECT price
-FROM products
-WHERE country = 'BTI' AND market = 'Bujumbaru' AND product = 'beans';`;
-  
-      const results = await db.raw(sql);
-
-      response = results.rows
-    } 
+    // fetch balance
+    fetchBalance(menu.args.phoneNumber).then(function(bal) {
+      // use menu.end() to send response and terminate session
+      menu.end("Your balance is KES " + bal);
+    });
   }
-);
+});
 
 menu.state("postForSale", {
   run: () => {
     async function addPost(post) {
-  
+      console.log("before");
       const func = await db("products")
         .insert(post)
         .where({ market: market });
-
+      console.log("after");
       return `New Post ID: ${post.market} : Added :)`;
     }
     menu.end("Your post is live" + post);
@@ -96,7 +92,14 @@ app.post("*", function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
-
+//   let post = req.body;
+//   addPost(post)
+//     .then(saved => {
+//       res.status(201).json(saved);
+//     })
+//     .catch(({ message }) => {
+//       res.status(503).json({ message });
+//     });
 });
 
 const port = process.env.PORT || 5000;
