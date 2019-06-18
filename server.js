@@ -57,18 +57,13 @@ menu.state("Bujumbaru", {
     SELECT price
 FROM products
 WHERE country = 'BTI' AND market = 'Bujumbaru' AND product = 'beans';`;
-    try {
+  
       const results = await db.raw(sql);
-    console.log(results);
+
       response = results.rows
-    } catch (error) {
-      console.log(error);
-      // do stuff with error
-    }
-  // response = `END Current prices for \n Eggs ${prices}`;
-  break;
+    } 
   }
-});
+);
 
 menu.state("postForSale", {
   run: () => {
