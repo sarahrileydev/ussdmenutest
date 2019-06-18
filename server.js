@@ -63,26 +63,32 @@ menu.state("Bujumbaru", {
 
 menu.state("postForSale", {
   run: () => {
-    async function addPost(post) {
-      console.log("before");
-      const func = await db("products")
-        .insert(post)
-        .where({ market: market });
-      console.log("after");
-      return `New Post ID: ${post.market} : Added :)`;
-    }
-    menu.end("Your post is live" + post);
+    menu.con("Enter a country:");
+  },
+  next: {
+    "*[a-zA-Z]+": "addCountry"
   }
 });
 
 // nesting states
-menu.state("buyAirtime.amount", {
+menu.state("addCountry", {
   run: () => {
     // use menu.val to access user input value
-    var amount = Number(menu.val);
-    buyAirtime(menu.args.phoneNumber, amount).then(function(res) {
-      menu.end("Airtime bought successfully.");
-    });
+    let country = menu.val;
+    const product = {
+      country: country,
+      market: "market",
+      product: "product",
+      price: "price"
+    };
+    db("products")
+      .insert(product)
+      .then(res => {
+        menu.end("Country added successfully!");
+      })
+      .catch(err => {
+        menu.end("Fail");
+      });
   }
 });
 
@@ -92,14 +98,14 @@ app.post("*", function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
-//   let post = req.body;
-//   addPost(post)
-//     .then(saved => {
-//       res.status(201).json(saved);
-//     })
-//     .catch(({ message }) => {
-//       res.status(503).json({ message });
-//     });
+  //   let post = req.body;
+  //   addPost(post)
+  //     .then(saved => {
+  //       res.status(201).json(saved);
+  //     })
+  //     .catch(({ message }) => {
+  //       res.status(503).json({ message });
+  //     });
 });
 
 const port = process.env.PORT || 5000;
