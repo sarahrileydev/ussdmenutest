@@ -9,6 +9,16 @@ app.get("/", (req, res) => {
   res.send("It's alive!");
 });
 
+app.get("/products", (req, res) => {
+    db("products")
+    .then(products => {
+        res.status(200).json(products);
+      })
+      .catch(err => {
+        res.status(400).json({message: "Fail"})
+      });
+})
+
 const UssdMenu = require("ussd-menu-builder");
 let menu = new UssdMenu();
 
