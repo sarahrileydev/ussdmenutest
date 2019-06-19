@@ -55,7 +55,9 @@ menu.state("markets", {
         // console.log("DBPRODUCTS", products)
         for (let i = 0; i < products.length; i++) {
           options[i + 1] = `${products[i].product} ${products[i].price} `;
+
         }
+        console.log("OPTIONS", options)
         return options;
       });
 
