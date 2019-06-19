@@ -1,7 +1,7 @@
 const app = require("express")();
 const bodyParser = require("body-parser");
 const db = require("./data/dbConfig");
-const seller = require("./sellerStates");
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,7 +33,7 @@ menu.startState({
   // next object links to next state based on user input
   next: {
     "1": "markets",
-    "2": seller.postForSale
+    "2": "postForSale"
   }
 });
 
