@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const UssdMenu = require('ussd-menu-builder')
+const db = require("./data/dbConfig");
 
 
 const menu = new UssdMenu()

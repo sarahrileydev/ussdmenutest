@@ -33,7 +33,7 @@ menu.startState({
   // next object links to next state based on user input
   next: {
     "1": "markets",
-    "2": "postForSale"
+    "2": seller.postForSale
   }
 });
 
