@@ -5,9 +5,13 @@ const UssdMenu = require('ussd-menu-builder')
 
 const menu = new UssdMenu()
 
+module.exports = {
+  postForSale,
+  addCountry,
+  state
+}
 
-
-
+let postForSale = 
 menu.state("postForSale", {
   run: () => {
     menu.con("Enter a country:");
@@ -18,6 +22,7 @@ menu.state("postForSale", {
 });
 
 // nesting states
+let addCountry =
 menu.state("addCountry", {
   run: () => {
     // use menu.val to access user input value
@@ -40,4 +45,3 @@ menu.state("addCountry", {
 });
 
 
-module.exports = sellerStates;

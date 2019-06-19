@@ -5,7 +5,7 @@ const seller = require("./sellerStates");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("*", seller)
+
 
 app.get("/", (req, res) => {
   res.send("It's alive!");
