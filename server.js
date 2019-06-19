@@ -37,7 +37,7 @@ menu.startState({
 
 menu.state("markets", {
   run: () => {
-    const markets = products.market.filter(item => item.menu.val);
+    const markets = await products.market.filter(item => item.menu.val);
     menu.con("Welcome. Choose option:");
     return markets;
   },
@@ -85,7 +85,7 @@ menu.state("addCountry", {
 
 // Registering USSD handler with Express
 
-app.post("*", function(req, res) {
+app.post("*", async function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
