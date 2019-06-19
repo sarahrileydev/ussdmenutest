@@ -37,22 +37,28 @@ menu.startState({
 
 menu.state("markets", {
   run: () => {
+    const market = "Bujumbaru";
 
     // const markets = await db.find("products")
     // .where({menu.val});
-    // menu.con("Welcome. Choose option:");
+    menu.con(`The products available at ${market}`);
     // return markets;
-    const market = "Bujumbaru"
-    db("products")
-      .where({market:market})
-      .then(products => {
-        const options = ""
-        console.log("DBPRODUCTS", products)
-      })
-
   },
-  next: {
-    "*\\d+": "Test"
+  
+  next: () => {
+    const market = "Bujumbaru";
+    
+    db("products")
+      .where({ market: market })
+      .then(products => {
+        const options = {};
+        // console.log("DBPRODUCTS", products)
+        for (let i = 0; i < products.length; i++) {
+          options[i + 1] = `${products[i].product} ${products[i].price} `;
+        }
+        return options;
+      });
+
   }
 });
 
