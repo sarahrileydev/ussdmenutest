@@ -6,7 +6,6 @@ const UssdMenu = require('ussd-menu-builder')
 const menu = new UssdMenu()
 
 
-const bodyParser = require('body-parser')
 
 
 menu.state("postForSale", {
