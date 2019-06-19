@@ -37,9 +37,14 @@ menu.startState({
 
 menu.state("markets", {
   run: () => {
+    try{
     const markets = await products.market.filter(item => item.menu.val);
     menu.con("Welcome. Choose option:");
     return markets;
+  } catch (error) {
+    console.log(error);
+    // do stuff with error
+  }
   },
   next: {
     "*\\d+": "Test"
