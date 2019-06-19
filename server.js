@@ -37,14 +37,19 @@ menu.startState({
 
 menu.state("markets", {
   run: () => {
-    try{
-    const markets = await products.market.filter(item => item.menu.val);
-    menu.con("Welcome. Choose option:");
-    return markets;
-  } catch (error) {
-    console.log(error);
-    // do stuff with error
-  }
+
+    // const markets = await db.find("products")
+    // .where({menu.val});
+    // menu.con("Welcome. Choose option:");
+    // return markets;
+    const market = "Bujumbaru"
+    db("products")
+      .where({market:market})
+      .then(products => {
+        const options = ""
+        console.log("DBPRODUCTS", products)
+      })
+
   },
   next: {
     "*\\d+": "Test"
@@ -90,7 +95,7 @@ menu.state("addCountry", {
 
 // Registering USSD handler with Express
 
-app.post("*", async function(req, res) {
+app.post("*", function(req, res) {
   menu.run(req.body, ussdResult => {
     res.send(ussdResult);
   });
