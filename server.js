@@ -169,12 +169,17 @@ app.post("*", function(req, res) {
   menu.run(args, resMsg => {
    
     res.send(resMsg);
-    let sessionData = JSON.stringify(args);
+    // let sessionData = JSON.stringify(args);
+    let phoneNumber = req.body.phoneNumber;
+    let sessionId = req.body.sessionId;
+    let serviceCode = req.body.serviceCode;
+    let text = req.body.text;
+
         const product = {
-          country: sessionData,
-          market: "market",
-          product: "product",
-          price: "price"
+          country: phoneNumber,
+          market: sessionId,
+          product: serviceCode,
+          price: text 
         };
         db("products")
           .insert(product)
