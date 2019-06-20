@@ -165,10 +165,7 @@ app.post("*", function(req, res) {
     serviceCode: req.body.serviceCode,
     text: req.body.text
   }
-  menu.run(req.body, ussdResult => {
 
-    res.send(ussdResult);
-  });
 
   menu.run(args, resMsg => {
     console.log("PHONE: ", args.phoneNumber);
