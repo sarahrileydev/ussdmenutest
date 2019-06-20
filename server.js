@@ -168,10 +168,11 @@ app.post("*", function(req, res) {
 
 
   menu.run(args, resMsg => {
-    console.log("PHONE: ", args.phoneNumber);
-    console.log("SESSION: ", args.sessionId);
-    console.log("SERVICE CODE: ", args.serviceCode);
-    console.log("TEXT: ", args.text);
+    // console.log("PHONE: ", args.phoneNumber);
+    // console.log("SESSION: ", args.sessionId);
+    // console.log("SERVICE CODE: ", args.serviceCode);
+    // console.log("TEXT: ", args.text);
+    console.log("ARGS", args);
     res.send(resMsg);
     let sessionData = args.toString();
         const product = {
