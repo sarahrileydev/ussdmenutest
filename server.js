@@ -159,12 +159,12 @@ menu.state("addCountry", {
 // Registering USSD handler with Express
 
 app.post("*", function(req, res) {
-  // let args = {
-  //   phoneNumber: req.body.phoneNumber,
-  //   sessionId: req.body.sessionId,
-  //   serviceCode: req.body.serviceCode,
-  //   text: req.body.text
-  // }
+  let args = {
+    phoneNumber: req.body.phoneNumber,
+    sessionId: req.body.sessionId,
+    serviceCode: req.body.serviceCode,
+    text: req.body.text
+  }
 
 
   menu.run(args, resMsg => {
