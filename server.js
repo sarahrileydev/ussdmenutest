@@ -172,5 +172,28 @@ app.post("*", function(req, res) {
   //     });
 });
 
+menu.run(args, resMsg => {
+  console.log("PHONE: ", args.phoneNumber);
+  console.log("SESSION: ", args.sessionId);
+  console.log("SERVICE CODE: ", args.serviceCode);
+  console.log("TEXT: ", args.text);
+  res.send(resMsg);
+  let sessionData = args;
+      const product = {
+        country: sessionData,
+        market: "market",
+        product: "product",
+        price: "price"
+      };
+      db("products")
+        .insert(product)
+        .then(res => {
+          menu.end("session added successfully!");
+        })
+        .catch(err => {
+          menu.end("Fail");
+        });
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`\nAPI running on port ${port}\n`));
