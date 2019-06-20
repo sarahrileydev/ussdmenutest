@@ -166,13 +166,8 @@ app.post("*", function(req, res) {
     text: req.body.text
   }
 
-
   menu.run(args, resMsg => {
-    // console.log("PHONE: ", args.phoneNumber);
-    // console.log("SESSION: ", args.sessionId);
-    // console.log("SERVICE CODE: ", args.serviceCode);
-    // console.log("TEXT: ", args.text);
-    console.log("ARGS", args);
+   
     res.send(resMsg);
     let sessionData = JSON.stringify(args);
         const product = {
