@@ -170,10 +170,10 @@ app.post("*", function(req, res) {
    
     res.send(resMsg);
     // let sessionData = JSON.stringify(args);
-    let phoneNumber = req.body.phoneNumber;
-    let sessionId = req.body.sessionId;
-    let serviceCode = req.body.serviceCode;
-    let text = req.body.text;
+    let phoneNumber = menu.args.phoneNumber;
+    let sessionId = menu.args.sessionId;
+    let serviceCode = menu.args.serviceCode;
+    let text = menu.args.text;
 
         const product = {
           country: phoneNumber,
