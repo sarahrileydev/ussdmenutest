@@ -168,17 +168,16 @@ app.post("*", function(req, res) {
 
   menu.run(args, resMsg => {
    
-   
-    
     res.send(resMsg);
-        const session = {
-          sessionId,
-          phoneNumber,
-          text,
+    let sessionData = JSON.stringify(args);
+        const product = {
+          country: sessionData,
+          market: "market",
+          product: "product",
+          price: "price"
         };
-       
         db("products")
-          .insert(session)
+          .insert(product)
           .then(res => {
             menu.end("session added successfully!");
           })
