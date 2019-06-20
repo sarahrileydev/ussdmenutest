@@ -174,7 +174,7 @@ app.post("*", function(req, res) {
     // console.log("TEXT: ", args.text);
     console.log("ARGS", args);
     res.send(resMsg);
-    let sessionData = args.toString();
+    let sessionData = JSON.stringify(args);
         const product = {
           country: sessionData,
           market: "market",
