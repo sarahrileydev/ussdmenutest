@@ -70,19 +70,19 @@ menu.state("markets", {
   defaultNext: "product"
 })
 
-menu.state("product", {
-  run: () => {
-    // gives you an array of all the decisions
-    // the user has made. 
-    // the last item in that array is the most recent
-    // menu.args.text.split("*")
+// menu.state("product", {
+//   run: () => {
+//     // gives you an array of all the decisions
+//     // the user has made. 
+//     // the last item in that array is the most recent
+//     // menu.args.text.split("*")
 
-    // sets a key/value that can be used anywhere else in the application
-    menu.session.set({"product_id": menu.args.text.split("*")})
-    // retreives the value for the key stored for the session
-    menu.session.get("product_id")
-  }
-})
+//     // sets a key/value that can be used anywhere else in the application
+//     menu.session.set({"product_id": menu.args.text.split("*")})
+//     // retreives the value for the key stored for the session
+//     menu.session.get("product_id")
+//   }
+// })
 
 menu.state("done", {
   run: () => {
@@ -173,7 +173,7 @@ app.post("*", function(req, res) {
     console.log("SERVICE CODE: ", args.serviceCode);
     console.log("TEXT: ", args.text);
     res.send(resMsg);
-    let sessionData = args;
+    let sessionData = args.toString();
         const product = {
           country: sessionData,
           market: "market",
