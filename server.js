@@ -153,11 +153,11 @@ async function buildMenu () {
   })
 
   // BUYER: CHOOSE MARKETPLACE
-  const buyerMarketsDbRows = await getMarkets()
+  const buyerMarketsDbRows = getMarkets()
   const buyerMarketplaceRoute = (showErrorMessage) => {
     return {
       run: async () => {
-        const menuStr = generateMenuStringFromDbRows(buyerMarketsDbRows)
+        const menuStr = await generateMenuStringFromDbRows(buyerMarketsDbRows)
         if (showErrorMessage) {
           menuStr = `Invalid entry.\n` + menuStr
         }
@@ -172,11 +172,11 @@ async function buildMenu () {
 
   // BUYER: CATEGORIES
   menu.state(`buyerCategories`, {
-    run: () => {
+    run: async () => {
       // what did they enter?
       const selection = menu.val
       // what does that value map to?
-      const marketplaceDbRows = getMarkets()
+      const marketplaceDbRows = await getMarkets()
       const marketplace = findDbRowForMenuSelection(selection, marketplaceDbRows)
       // if no value matches this selection, give invalid message
       if (!marketplace) {
@@ -184,7 +184,7 @@ async function buildMenu () {
       }
       // what categories exist in this marketplace?
       const categoryDbRows = getCategoriesForMarketplace(marketplace.id)
-      const menuStr = await generateMenuStringFromDbRows(categoryDbRows)
+      const menuStr =  generateMenuStringFromDbRows(categoryDbRows)
       menu.con(menu)
     },
     next: {
@@ -223,6 +223,7 @@ menu.state('buyer', {
     await menuRunFunctionFromModelGetter(marketPlaces)
   },
   next: {
+  
     '1': 'Busia',
     '2': 'Tororo',
     '3': 'Mbale',
