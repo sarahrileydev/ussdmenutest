@@ -22,7 +22,7 @@ app.get("/products", (req, res) => {
 const UssdMenu = require("ussd-menu-builder");
 let menu = new UssdMenu();
 
-function findPrice(name, product) {
+async function findPrice(name, product) {
   return db("markets")
     .select("price")
     .where({ name: name, product: product });
@@ -33,15 +33,15 @@ async function addProduct(product) {
 
 }
 
-function get() {
+async function get() {
   return db('marketplaces')
 }
 
-function getMarkets() {
+async function getMarkets() {
   return db('marketplaces')
 }
 
-function getCat() {
+async function getCat() {
   return db('categories')
 }
 
@@ -64,7 +64,7 @@ async function getProducts() {
   })
 }
 
-function getSellers () {
+async function getSellers () {
   const sellers = []
   for (let i=0; i<100; i++) {
     sellers.push({
