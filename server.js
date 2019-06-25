@@ -153,7 +153,7 @@ async function buildMenu () {
   })
 
   // BUYER: CHOOSE MARKETPLACE
-  const buyerMarketsDbRows = await model.getMarkets()
+  const buyerMarketsDbRows = await getMarkets()
   const buyerMarketplaceRoute = (showErrorMessage) => {
     return {
       run: async () => {
@@ -176,7 +176,7 @@ async function buildMenu () {
       // what did they enter?
       const selection = menu.val
       // what does that value map to?
-      const marketplaceDbRows = await model.getMarkets()
+      const marketplaceDbRows = await getMarkets()
       const marketplace = findDbRowForMenuSelection(selection, marketplaceDbRows)
       // if no value matches this selection, give invalid message
       if (!marketplace) {
