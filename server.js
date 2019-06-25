@@ -202,8 +202,7 @@ async function buildMenu () {
 }
 
 
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: true }))
+
 
 
 
